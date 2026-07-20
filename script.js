@@ -2640,7 +2640,7 @@ const ModuloAceExtra = {
 
     // HASTE ACE 2
     this.estado.medidaHasteBase = safeParseFloat(item.cortepassanteace);
-    $('#input-diametro-haste-ace-extra').val(item.diametrohaste || "");
+    $('#input-diametro-haste-ace-extra-ace').val(item.diametrohaste || "");
     if (item.imghasteaced) {
       $('#imagemHasteAceExtra').attr("src", item.imghasteaced);
     }
@@ -2648,7 +2648,7 @@ const ModuloAceExtra = {
     // ROSCA DIANTEIRA 2
     this.estado.rdBase = item.medidardacedb || '';
     this.estado.crdBase = safeParseFloat(item.medidaCRDacedb || '0');
-    $('#input-medida-rosca-dianteira-ace-extra').val(`${this.estado.rdBase} ${this.estado.crdBase}mm`);
+    $('#input-medida-rosca-dianteira-ace-extra-ace').val(`${this.estado.rdBase} ${this.estado.crdBase}mm`);
 
     // INFORMAÇÕES EXTRAS
     $('#input-rebaixo-traseira-extra-ace').val(item.rebaixotraseira || '');
@@ -2679,11 +2679,11 @@ const ModuloAceExtra = {
 
     // Haste ACE 2
     const totalHaste = this.estado.medidaHasteBase + curso + this.estado.prolongamentoHaste + this.estado.prolongamentoRosca;
-    $('#input-medida-corte-ace-extra').val(`${totalHaste}mm`);
+    $('#input-medida-corte-ace-extra-ace').val(`${totalHaste}mm`);
 
     // Rosca Dianteira 2 (Com prolongamento)
     const totalRd = this.estado.crdBase + this.estado.prolongamentoRosca;
-    $('#input-medida-rosca-dianteira-ace-extra').val(`${this.estado.rdBase} ${totalRd}mm`);
+    $('#input-medida-rosca-dianteira-ace-extra-ace').val(`${this.estado.rdBase} ${totalRd}mm`);
 
     // --- FOLHA PASSANTE ACE ---
     const totalPass = this.estado.medidaHasteBasePassante + curso + this.estado.prolongamentoHastePassante + this.estado.prolongamentoRoscaPassante;

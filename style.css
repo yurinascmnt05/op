@@ -1,0 +1,460 @@
+/* ==========================================================================
+   VARIÁVEIS GLOBAIS (DESIGN TOKENS)
+   ========================================================================== */
+:root {
+  /* Tipografia */
+  --fonte-base: Arial, sans-serif;
+  --tamanho-fonte-base: 13.335px;
+  --linha-altura: 1.21275;
+
+  /* Tamanhos de Fonte */
+  --fonte-sm: 11.025px;
+  --fonte-md: 12.1275px;
+  --fonte-label: 15px;
+  --fonte-titulo: 15.435px;
+
+  /* Cores e Bordas */
+  --cor-borda: #888;
+  --cor-borda-escura: #000;
+  --cor-borda-secao: #ccc;
+  --cor-fundo-compacta: #9e9e9e9d;
+
+  /* Botões */
+  --cor-btn-primario: #4b8cd6;
+  --cor-btn-hover: #002f5a;
+
+  /* Espaçamentos (Margens e Paddings) */
+  --espaco-xs: 1.1025px;
+  --espaco-sm: 3.3075px;
+  --espaco-md: 6.615px;
+  --espaco-lg: 11.025px;
+  --espaco-xl: 13.23px;
+
+  /* Estrutura */
+  --raio-borda: 4px;
+  --altura-cabecalho: 46.305px;
+}
+
+/* ==========================================================================
+   CLASSES UTILITÁRIAS
+   ========================================================================== */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   ESTILOS GLOBAIS DA PÁGINA
+   ========================================================================== */
+body {
+  font-family: var(--fonte-base);
+  font-size: var(--tamanho-fonte-base);
+  line-height: var(--linha-altura);
+  margin: 0 auto;
+
+  /* Dimensões padrão de folha A4 para impressão perfeita */
+  width: 22.05cm;
+  min-height: 29.7cm;
+
+  box-sizing: border-box;
+  background: #fff;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   ESTILOS DE BOTÕES GERAIS
+   ========================================================================== */
+.btn-imprimir {
+  display: block;
+  margin: var(--espaco-xl) auto;
+  padding: 6.615px 15.435px;
+  font-size: var(--fonte-titulo);
+  background-color: var(--cor-btn-primario);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-imprimir:hover {
+  background-color: var(--cor-btn-hover);
+}
+
+/* ==========================================================================
+   CABEÇALHO DA OP (ORDEM DE PRODUÇÃO)
+   ========================================================================== */
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4.41px var(--espaco-md);
+  border-bottom: 1px solid var(--cor-borda-escura);
+  height: var(--altura-cabecalho);
+  box-sizing: border-box;
+  gap: var(--espaco-md);
+}
+
+.cabecalho .logo img {
+  height: 39.69px;
+  width: auto;
+}
+
+.cabecalho .titulo-area p {
+  margin: 0;
+  font-size: var(--fonte-titulo);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.cabecalho .dados-doc p {
+  margin: 0 var(--espaco-md);
+  font-size: var(--fonte-md);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   ESTRUTURA DE SEÇÕES E GRID (LINHAS E COLUNAS)
+   ========================================================================== */
+.section {
+  border: 1px solid var(--cor-borda-secao);
+  /* Evita que a seção seja cortada no meio durante a quebra de página */
+  page-break-inside: avoid;
+  padding: var(--espaco-sm) var(--espaco-md);
+  margin-bottom: var(--espaco-md);
+}
+
+.section.prioridade {
+  background-color: var(--cor-fundo-compacta);
+}
+
+.linha {
+  display: flex;
+  gap: var(--espaco-lg);
+  margin-bottom: var(--espaco-sm);
+  flex-wrap: wrap;
+}
+
+.coluna {
+  flex: 1;
+  min-width: 154.35px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DE ELEMENTOS DE FORMULÁRIO (INPUTS, LABELS, SELECTS)
+   ========================================================================== */
+.infosParaImpressao {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-md);
+  margin-bottom: var(--espaco-md);
+  flex-wrap: wrap;
+}
+
+.infosParaImpressao label {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.infosParaImpressao input[type="number"] {
+  width: 130px;
+  height: 28px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: var(--espaco-xs);
+  font-size: var(--fonte-label);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  padding: 1.658px var(--espaco-sm);
+  font-size: var(--fonte-sm);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select {
+  height: 28px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+  width: 100%;
+}
+
+input[type="text"] {
+  background: transparent;
+}
+
+input[type="date"] {
+  margin-right: var(--espaco-md);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 27.5625px;
+}
+
+
+
+/* ==========================================================================
+   SEÇÃO DE PRIORIDADE 
+   ========================================================================== */
+.opcoes-prioridade {
+  display: flex;
+  gap: 8.82px;
+  margin-top: 3.4725px;
+}
+
+.opcoes-prioridade label {
+  display: flex;
+  align-items: center;
+  font-size: 14.3325px;
+  gap: var(--espaco-sm);
+  font-weight: normal;
+}
+
+/* ==========================================================================
+   ÁREA DA IMAGEM E CAMPOS ESPECÍFICOS
+   ========================================================================== */
+
+
+
+/* ==========================================================================
+   ESTILOS DE OPERAÇÕES E TABELAS (DESBLOQUEADOS)
+   ========================================================================== */
+h3 {
+  font-size: var(--fonte-md);
+  margin: var(--espaco-sm) 0;
+}
+
+.imghaste,
+.imgtubo {
+  width: 100%;
+  margin: 0 auto;
+  height: 155px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.imghaste img,
+.imgtubo img {
+  max-width: 45%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+#nometubo,
+#nometubo-sai,
+#nomepassante,
+#nomeguias,
+#nomeTirante-sai,
+#nometubo-ccn,
+#nomeguias-ccn,
+#nometubo-mi,
+.campo-nome {
+  background-color: #fff;
+}
+
+.section h3 {
+  margin: 0 0 var(--espaco-md);
+  font-size: var(--fonte-md);
+  border-bottom: 1px solid var(--cor-borda-escura);
+  padding-bottom: var(--espaco-sm);
+  text-transform: uppercase;
+}
+
+.section.compacta table th,
+.section.compacta table td {
+  padding: 4px;
+}
+
+.section.compacta.operacao-corte-tubo,
+.section.compacta.operacao-rosca,
+.section.compacta.operacao-montagem {
+  height: 105px;
+}
+
+.section.compacta.operacao-testes {
+  height: 110px;
+}
+
+.section.compacta.operacao-mecanica {
+  height: 135px;
+}
+
+.section.compacta.operacao-corte-extra {
+  height: 165px;
+}
+
+.section.compacta {
+  padding: 4.41px var(--espaco-md);
+  margin-bottom: 8.82px;
+  background-color: var(--cor-fundo-compacta);
+  height: 110px;
+}
+
+.section.compacta h3 {
+  font-size: 11.57625px;
+  margin-bottom: 4.41px;
+  padding-bottom: 2.205px;
+}
+
+.section.compacta.acabamento {
+  height: 160px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  height: 80px;
+  background-color: #fff;
+}
+
+table th,
+table td {
+  border: 1px solid var(--cor-borda-escura);
+  padding: 3.4725px;
+  text-align: left;
+  font-size: var(--fonte-label);
+}
+
+table input[type="text"] {
+  width: 95%;
+  padding: 1.658px;
+  font-size: var(--fonte-label);
+  border: none;
+  outline: none;
+}
+
+
+
+
+/* =====================================================
+   REGRAS DE IMPRESSÃO (@media print)
+   ===================================================== */
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+
+  /* Elementos ocultados na impressão (botões e controles) */
+  button,
+  .componenteViton,
+  .componenteInox,
+  .componentePassante,
+  .componenteVitonAirTac,
+  .infosParaImpressao,
+  .componentePh,
+  .componentePr,
+  #grupo-ph-passante,
+  .btn-imprimir {
+    display: none !important;
+  }
+
+  /* Quebra de página */
+  .quebra-pagina:not(.hidden) {
+    display: block !important;
+    page-break-before: always !important;
+    break-before: page !important;
+    margin-top: 0 !important;
+  }
+
+  /* Garante que .hidden seja sempre respeitado na impressão */
+  .hidden {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+  }
+}
+
+.erro-validacao {
+  border: 2px solid #f44336 !important;
+  background-color: #ffe6e6 !important;
+  box-shadow: 0 0 5px rgba(244, 67, 54, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   CÓDIGO BLOQUEADO PARA USO FUTURO (OUTRAS PEÇAS E TELAS)
+   ========================================================================== */
+/*
+.section.compacta.operacao-corte-guias { height: 105px; }
+.section.compacta.operacao-mecanica-guias { height: 135px; }
+.section.compacta.operacao-mecanica-tirantes { height: 145px; }
+
+#especial { height: 140px; }
+
+.linha .coluna.rebaixo-boca-chave { margin-right: 8.82px; }
+
+.linha-dupla {
+  display: flex;
+  gap: 4.41px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.linha-dupla .section { flex: 1; min-width: 308.7px; }
+
+#nomehaste, #nometubo, #nomepassante, #nomeguias, #nometirantes, #nomeccmb, #nometubo-mi, #nometubo-ccn, #nomeguias-ccn {
+  background-color: #fff;
+}
+
+.aprovado-container {
+  display: flex; gap: 8.82px; align-items: center;
+}
+.aprovado-container label {
+  margin: 0; font-weight: normal; font-size: var(--fonte-md);
+}
+
+.imgtubo, .imgguias, .imgtirantes {
+  display: flex; justify-content: center;
+}
+.imgRebaixo, .imgRebaixoT { padding-left: 25%; }
+.imgAlimentacao, .imgFixacao { padding-left: 30%; }
+
+.agrupar-tubo {
+  display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+}
+
+#cilindro, #curso-tubo, #curso-guias, #curso-tirantes { height: 17.64px; }
+#codigo-ccmb { max-width: 250px; }
+
+.botoes-acoes {
+  display: flex; gap: 9.27px; justify-content: center; margin: var(--espaco-xl) 0;
+}
+*/
+
+/* Centralização de Imagens da Página CCB/CCMB */
+.imgRebaixo,
+.imgRebaixoT,
+.imgAlimentacao,
+.imgFixacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--espaco-md) auto;
+}

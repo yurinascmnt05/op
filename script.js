@@ -1855,33 +1855,41 @@ const ModuloCCB = {
     $('#roscaTubo-ccb').val(item.rosca || "");
 
     // IMAGENS PAGINA CCB/CCMB
-    if (item.rebaixoDianteiraCCMB) $('#imgRebaixoD').attr("src", item.rebaixoDianteiraCCMB);
-    if (item.rebaixoTraseiraCCMB) $('#imgRebaixoT').attr("src", item.rebaixoTraseiraCCMB);
-    if (item.imgAlimentacao) $('#imgAlimentacao').attr("src", item.imgAlimentacao);
-    if (item.furacao) $('#imgFixacao').attr("src", item.furacao);
+    if (item.rebaixoDianteiraCCMB) {
+      $('#imgRebaixoD, #imgRebaixoDPassante').attr("src", item.rebaixoDianteiraCCMB);
+    }
+    if (item.rebaixoTraseiraCCMB) {
+      $('#imgRebaixoT, #imgRebaixoTPassante').attr("src", item.rebaixoTraseiraCCMB);
+    }
+    if (item.imgAlimentacao) {
+      $('#imgAlimentacao, #imgAlimentacaoPassante').attr("src", item.imgAlimentacao);
+    }
+    if (item.furacao) {
+      $('#imgFixacao, #imgFixacaoPassante').attr("src", item.furacao);
+    }
 
     // CAMPOS DA PÁGINA CCB/CCMB
-    $('#codigo-ccmb').val(item.cilindro || "");
+    $('#codigo-ccmb, #codigo-ccmb-passante').val(item.cilindro || "");
 
     // Tabela Rebaixo Dianteira
-    $('#ccmb-dc').val(item.diametroc || "");
-    $('#ccmb-c').val(item.c || "");
-    $('#ccmb-b').val(item.b || "");
-    $('#ccmb-a').val(item.a || "");
-    $('#ccmb-ae').val(item.diametroae || "");
+    $('#ccmb-dc, #ccmb-dc-passante').val(item.diametroc || "");
+    $('#ccmb-c, #ccmb-c-passante').val(item.c || "");
+    $('#ccmb-b, #ccmb-b-passante').val(item.b || "");
+    $('#ccmb-a, #ccmb-a-passante').val(item.a || "");
+    $('#ccmb-ae, #ccmb-ae-passante').val(item.diametroae || "");
 
     // Tabela Rebaixo Traseira
-    $('#ccmb-dct').val(item.diametroctraseira || "");
-    $('#ccmb-ct').val(item.ctraseira || "");
-    $('#ccmb-bt').val(item.btraseira || "");
-    $('#ccmb-at').val(item.atraseira || "");
-    $('#ccmb-aet').val(item.diametroaetraseira || "");
+    $('#ccmb-dct, #ccmb-dct-passante').val(item.diametroctraseira || "");
+    $('#ccmb-ct, #ccmb-ct-passante').val(item.ctraseira || "");
+    $('#ccmb-bt, #ccmb-bt-passante').val(item.btraseira || "");
+    $('#ccmb-at, #ccmb-at-passante').val(item.atraseira || "");
+    $('#ccmb-aet, #ccmb-aet-passante').val(item.diametroaetraseira || "");
 
     // Alimentação e Fixação
-    $('#ccmb-rosca-alimentacao').val(item.roscaalimentacao || "");
-    $('#ccmb-comprimento-alimentacao').val(item.comprimentoalimentacao || "");
-    $('#ccmb-diametro-rebaixo').val(item.diametrorebaixo || "");
-    $('#ccmb-comprimento-rebaixo').val(item.comprimentorebaixo || "");
+    $('#ccmb-rosca-alimentacao, #ccmb-rosca-alimentacao-passante').val(item.roscaalimentacao || "");
+    $('#ccmb-comprimento-alimentacao, #ccmb-comprimento-alimentacao-passante').val(item.comprimentoalimentacao || "");
+    $('#ccmb-diametro-rebaixo, #ccmb-diametro-rebaixo-passante').val(item.diametrorebaixo || "");
+    $('#ccmb-comprimento-rebaixo, #ccmb-comprimento-rebaixo-passante').val(item.comprimentorebaixo || "");
 
     // INFORMAÇÃO CCB
     $('#input-embolo').val(item.embolo || "");
@@ -1965,10 +1973,12 @@ const ModuloCCB = {
   },
 
   aplicarUI: function () {
-    $('#paginaCcb').removeClass('hidden');
     $('#folha-tubo-ccb').removeClass('hidden');
 
     if ($('#chkPassante').is(':checked')) {
+      $('#paginaCcb').addClass('hidden');
+      $('#paginaCcbPassante').removeClass('hidden');
+
       // Oculta o cabeçalho global
       $('#cabecalho-global').addClass('hidden');
       $('#prioridade-global').addClass('hidden');
@@ -1981,6 +1991,9 @@ const ModuloCCB = {
       $('#hasteCcbPassante').removeClass('hidden');
       if (typeof ModuloCCBExtra !== 'undefined') ModuloCCBExtra.aplicarUI();
     } else {
+      $('#paginaCcb').removeClass('hidden');
+      $('#paginaCcbPassante').addClass('hidden');
+
       // Exibe o cabeçalho global
       $('#cabecalho-global').removeClass('hidden');
       $('#prioridade-global').removeClass('hidden');

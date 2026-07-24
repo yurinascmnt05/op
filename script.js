@@ -2517,9 +2517,8 @@ const ModuloACE = {
     $('#input-distancia-oring-ace').val(item.distanciaoring || '');
     $('#input-rebaixo-oring-ace').val(item.rebaixooring || '');
 
-    this.estado.rtBase = item.medidart || '';
-    this.estado.crtBase = safeParseFloat(item.medidacrt || '0');
-    $('#input-medida-rosca-traseira-ace').val(`${this.estado.rtBase} ${this.estado.crtBase}mm`);
+    this.estado.rtBase = item.medidaRT || '';
+    $('#input-medida-rosca-traseira-ace').val(`${this.estado.rtBase}`);
 
     // BOCA DE CHAVE E REBAIXO
     $('#input-medida-rebaixo-ace').val(item.medidarebaixo || "");

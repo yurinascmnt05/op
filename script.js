@@ -729,18 +729,28 @@ const ModuloCDVU = {
     const cilindro = $('#select-cilindro').val() || "";
     const curso = $('#curso').val() ? $('#curso').val().toString().trim() : '';
 
-    let codigo = curso ? `${cilindro} - ${curso}` : cilindro;
+    let codigoBase = cilindro;
+    let sufixo = "";
+    if (cilindro.endsWith('-M') || cilindro.endsWith('-F')) {
+      codigoBase = cilindro.slice(0, -2);
+      sufixo = cilindro.slice(-1);
+    }
 
-    if ($('#chkViton').is(':checked')) codigo += " - V";
-    if ($('#chkPassante').is(':checked')) codigo += " - P";
-    if ($('#chkInox').is(':checked')) codigo += " - I";
+    let codigo = cilindro;
+    if (curso) {
+      codigo = sufixo ? `${codigoBase}-${curso}${sufixo}` : `${codigoBase}-${curso}`;
+    }
 
-    if (this.estado.prolongamentoHaste > 0) codigo += ` - PH${this.estado.prolongamentoHaste}`;
-    if (this.estado.prolongamentoRosca > 0) codigo += ` - PR${this.estado.prolongamentoRosca}`;
+    if ($('#chkViton').is(':checked')) codigo += "-V";
+    if ($('#chkPassante').is(':checked')) codigo += "-P";
+    if ($('#chkInox').is(':checked')) codigo += "-I";
+
+    if (this.estado.prolongamentoHaste > 0) codigo += `-PH${this.estado.prolongamentoHaste}`;
+    if (this.estado.prolongamentoRosca > 0) codigo += `-PR${this.estado.prolongamentoRosca}`;
 
     if ($('#chkPassante').is(':checked')) {
-      if (this.estado.prolongamentoHastePassante > 0) codigo += ` - PH${this.estado.prolongamentoHastePassante}`;
-      if (this.estado.prolongamentoRoscaPassante > 0) codigo += ` - PR${this.estado.prolongamentoRoscaPassante}`;
+      if (this.estado.prolongamentoHastePassante > 0) codigo += `-PH${this.estado.prolongamentoHastePassante}`;
+      if (this.estado.prolongamentoRoscaPassante > 0) codigo += `-PR${this.estado.prolongamentoRoscaPassante}`;
     }
 
     // inox matéria prima update

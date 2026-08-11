@@ -1949,7 +1949,17 @@ const ModuloCCB = {
     const cilindroRaw = $('#select-cilindro').val() || "";
     const curso = $('#curso').val() ? $('#curso').val().toString().trim() : '';
 
-    let codigo = curso ? `${cilindroRaw} - ${curso}` : cilindroRaw;
+    let baseFormatada = cilindroRaw;
+    if (curso) {
+      const match = cilindroRaw.match(/^(.*?)-(.*)$/);
+      if (match) {
+        baseFormatada = `${match[1]} - ${curso} ${match[2]}`;
+      } else {
+        baseFormatada = `${cilindroRaw} - ${curso}`;
+      }
+    }
+
+    let codigo = baseFormatada;
 
     if ($('#chkViton').is(':checked')) codigo += " - V";
     if ($('#chkInox').is(':checked')) codigo += " - I";
@@ -1957,7 +1967,7 @@ const ModuloCCB = {
     if (this.estado.prolongamentoHaste > 0) codigo += ` - PH${this.estado.prolongamentoHaste}`;
     if (this.estado.prolongamentoRosca > 0) codigo += ` - PR${this.estado.prolongamentoRosca}`;
 
-    let codigoPassante = curso ? `${cilindroRaw} - ${curso}` : cilindroRaw;
+    let codigoPassante = baseFormatada;
 
     if ($('#chkViton').is(':checked')) codigoPassante += " - V";
     if ($('#chkInox').is(':checked')) codigoPassante += " - I";

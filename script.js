@@ -1,7 +1,7 @@
 /* ==========================================================================
   1) CONFIGURAÇÕES GLOBAIS E ESTADO
 ========================================================================== */
-const urlAPI = 'https://script.google.com/macros/s/AKfycbz2aY79S22w5D_ZsxSLc9DVFNTfVwG79T-hez7FYEfwSO8y7MTkJoOstPBQm7QHvL8feg/exec';
+const urlAPI = 'https://script.google.com/macros/s/AKfycbxW_JOnqHLV2aryMZRL_h50IsKN6af6zoR0ju8AAN9WsLMLHwj9ZCwY9D8SoHkn3AEoWw/exec';
 
 let dadosPlanilha = [];
 let quantidadeHasteBackup = null;
@@ -79,7 +79,12 @@ function carregarCilindros() {
   sel.prop('disabled', true).trigger('change');
 
   fetch(urlAPI)
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) {
+        throw new Error(`Erro na rede: ${r.status} ${r.statusText}`);
+      }
+      return r.json();
+    })
     .then(data => {
       if (!Array.isArray(data)) throw new Error('Resposta inválida da API');
       dadosPlanilha = data;
@@ -91,7 +96,7 @@ function carregarCilindros() {
     })
     .catch(err => {
       console.error('Erro ao carregar dados:', err);
-      sel.empty().append('<option value="">(Erro ao carregar dados)</option>');
+      sel.empty().append('<option value="">(Erro ao carregar dados - Verifique a API)</option>');
       sel.trigger('change');
     });
 }

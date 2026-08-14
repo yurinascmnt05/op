@@ -363,6 +363,7 @@ function OcultarTodasFolhas() {
   $('#hasteSai').addClass('hidden');
   $('#folha-tubo-sai').addClass('hidden');
   $('#folha-tirantes-sai').addClass('hidden');
+  $('#especial-sai').addClass('hidden');
   $('#hasteCt').addClass('hidden');
   $('#hastePassanteCt').addClass('hidden');
   $('#folha-tubo-ct').addClass('hidden');
@@ -1188,6 +1189,10 @@ const ModuloSAI = {
     $('.val-ebc').val(item.medidarebaixo || "");
     $('.val-cbc').val(item.medidacomprimento || "");
 
+    $('#input-diamz').val(item.diamz || "");
+    $('#input-distz').val(item.distz || "");
+    $('#input-compz').val(item.compz || "");
+
     // TUBO
     this.estado.medidaTuboBase = safeParseFloat(item.medidacortetubo);
     $('#medidaTubo-sai').val(this.estado.medidaTuboBase > 0 ? `${this.estado.medidaTuboBase}mm` : "");
@@ -1312,6 +1317,7 @@ const ModuloSAI = {
     $('.imghaste').first().removeClass('hidden');
     $('#hasteSai').removeClass('hidden');
     $('#folha-tubo-sai').removeClass('hidden');
+    $('#especial-sai').removeClass('hidden');
 
     const cilindro = $('#select-cilindro').val() || "";
     // Tirantes apenas para SAI 160 e SAI 200

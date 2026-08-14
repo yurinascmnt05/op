@@ -400,6 +400,10 @@ table input[type="text"] {
   transition: all 0.3s ease;
 }
 
+#especial-sai {
+  height: 165px;
+}
+
 /* ==========================================================================
    CÓDIGO BLOQUEADO PARA USO FUTURO (OUTRAS PEÇAS E TELAS)
    ========================================================================== */

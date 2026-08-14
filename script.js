@@ -178,7 +178,15 @@ function initEventosGlobais() {
   });
 
   // Alterações genéricas que disparam o recalculo do módulo ativo
-  $('#curso').on('input', () => {
+  $('#curso').on('input', function() {
+    let val = $(this).val();
+    
+    // Evita que o usuário digite vírgula ou ponto no começo do número (ex: ",60")
+    if (/^[.,]/.test(val)) {
+      val = val.replace(/^[.,]+/, '');
+      $(this).val(val);
+    }
+
     if (moduloAtivo) {
       moduloAtivo.recalcular();
       moduloAtivo.atualizarCodigo();

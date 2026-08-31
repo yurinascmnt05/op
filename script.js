@@ -78,7 +78,7 @@ function carregarCilindros() {
   sel.empty().append('<option value="">Carregando dados da planilha...</option>');
   sel.prop('disabled', true).trigger('change');
 
-  Papa.parse('planilhaCIlindros.csv', {
+  Papa.parse('planilhaCilindros.csv', {
     download: true,
     header: true,
     skipEmptyLines: true,

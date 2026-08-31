@@ -75,30 +75,32 @@ function carregarCilindros() {
   const sel = $('#select-cilindro');
 
   // Feedback visual de carregamento
-  sel.empty().append('<option value="">Carregando dados da API...</option>');
+  sel.empty().append('<option value="">Carregando dados da planilha...</option>');
   sel.prop('disabled', true).trigger('change');
 
-  fetch(urlAPI)
-    .then(r => {
-      if (!r.ok) {
-        throw new Error(`Erro na rede: ${r.status} ${r.statusText}`);
+  Papa.parse('planilhaCIlindros.csv', {
+    download: true,
+    header: true,
+    skipEmptyLines: true,
+    complete: function(results) {
+      const data = results.data;
+      if (!Array.isArray(data)) {
+        console.error('Resposta inválida do CSV');
+        return;
       }
-      return r.json();
-    })
-    .then(data => {
-      if (!Array.isArray(data)) throw new Error('Resposta inválida da API');
       dadosPlanilha = data;
       const cilindros = [...new Set(data.map(i => i.cilindro).filter(Boolean))];
 
       sel.empty().append('<option></option>');
       cilindros.forEach(c => sel.append(new Option(c, c)));
       sel.prop('disabled', false).trigger('change');
-    })
-    .catch(err => {
+    },
+    error: function(err) {
       console.error('Erro ao carregar dados:', err);
-      sel.empty().append('<option value="">(Erro ao carregar dados - Verifique a API)</option>');
+      sel.empty().append('<option value="">(Erro ao carregar dados - Verifique o arquivo CSV)</option>');
       sel.trigger('change');
-    });
+    }
+  });
 }
 
 /* ==========================================================================

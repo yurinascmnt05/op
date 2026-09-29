@@ -251,6 +251,7 @@ h3 {
   justify-content: center;
   align-items: center;
   gap: 30px;
+  box-sizing: border-box;
 }
 
 .imghaste img,
@@ -258,6 +259,17 @@ h3 {
   max-width: 100%;
   max-height: 150px;
   object-fit: contain;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Garante que a primeira imagem (Boca de chave) fique pequena e a segunda (Haste) ocupe o restante sem vazar */
+.imghaste img:nth-child(1) {
+  max-width: 25%;
+}
+
+.imghaste img:nth-child(2) {
+  max-width: calc(75% - 30px);
 }
 
 #nometubo,
